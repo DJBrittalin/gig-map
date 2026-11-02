@@ -1,0 +1,41 @@
+name: Update gigs
+
+on:
+  schedule:
+    # Every day at 5am Sydney time (18:00 UTC during daylight saving, 6am in winter)
+    - cron: "0 18 * * *"
+  workflow_dispatch: {}   # adds a "Run workflow" button in the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install libraries and a headless browser
+        run: |
+          pip install requests beautifulsoup4 playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Scrape the gig guide
+        env:
+          GIG_GUIDE_URL: ${{ vars.GIG_GUIDE_URL }}
+          SCRAPER_CONTACT: ${{ vars.SCRAPER_CONTACT }}
+          DAYS_AHEAD: ${{ vars.DAYS_AHEAD }}
+        run: python scrape.py
+
+      - name: Save the new data
+        run: |
+          git config user.name "gig-map bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/gigs.json venues.json
+          git diff --cached --quiet || git commit -m "Update gigs"
+          git push
