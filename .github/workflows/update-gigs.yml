@@ -1,17 +1,22 @@
 name: Update gigs
 
+# Runs whenever you upload a gig-page.html file (made by grab-gigs.js).
+# It reads the gigs, finds any new venues on the map, updates docs/gigs.json,
+# then deletes the uploaded file so the next upload starts fresh.
 on:
-  schedule:
-    # Every day at 5am Sydney time (18:00 UTC during daylight saving, 6am in winter)
-    - cron: "0 18 * * *"
-  workflow_dispatch: {}   # adds a "Run workflow" button in the Actions tab
+  push:
+    paths:
+      - "gig-page*.html"
+  workflow_dispatch: {}   # "Run workflow" button in the Actions tab
 
 permissions:
   contents: write
 
+concurrency:
+  group: update-gigs
+
 jobs:
-  scrape:
-    # Pinned so GitHub's move to Ubuntu 26 can't break the browser install
+  update:
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
@@ -21,23 +26,27 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install libraries and a headless browser
-        run: |
-          pip install requests beautifulsoup4 playwright
-          python -m playwright install --with-deps chromium
+      - name: Install libraries
+        run: pip install requests beautifulsoup4
 
-      - name: Scrape the gig guide
+      - name: Read the uploaded page
         env:
-          GIG_GUIDE_URL: ${{ vars.GIG_GUIDE_URL }}
           SCRAPER_CONTACT: ${{ vars.SCRAPER_CONTACT }}
-          # How far ahead to load. Uses the DAYS_AHEAD variable if you set one, otherwise 60 days.
-          DAYS_AHEAD: ${{ vars.DAYS_AHEAD || '60' }}
-        run: python scrape.py
+        run: |
+          shopt -s nullglob
+          files=(gig-page*.html)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No gig-page.html found. Upload one made with grab-gigs.js to the top level of the repository."
+            exit 1
+          fi
+          python scrape.py --file "gig-page*.html"
 
       - name: Save the new data
         run: |
           git config user.name "gig-map bot"
           git config user.email "actions@users.noreply.github.com"
+          git rm -q --ignore-unmatch -- "gig-page*.html"
           git add docs/gigs.json venues.json
           git diff --cached --quiet || git commit -m "Update gigs"
+          git pull --rebase -q
           git push
