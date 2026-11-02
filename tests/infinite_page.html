@@ -1,0 +1,31 @@
+<html><body>
+<!-- Fake gig guide that loads 10 more days of gigs each time you reach the bottom, 60 days in total -->
+<div id="feed"></div>
+<script>
+const feed = document.getElementById('feed');
+const WD = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const MO = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MS = MO.map(m => m.slice(0,3));
+let day = 0, loading = false;
+function addDays(n) {
+  for (let i = 0; i < n && day < 60; i++, day++) {
+    const d = new Date(2026, 10, 2 + day, 19, 30);
+    const h3 = document.createElement('h3');
+    h3.innerHTML = `<span class="text-ruby">${WD[d.getDay()]}</span> ${d.getDate()} ${MO[d.getMonth()]} ${d.getFullYear()}`;
+    const box = document.createElement('div'); box.className = 'day';
+    const start = `${WD[d.getDay()].slice(0,3)} ${MS[d.getMonth()]} ${String(d.getDate()).padStart(2,'0')} ${d.getFullYear()} 19:30:00 GMT+1100 (Australian Eastern Daylight Time)`;
+    box.innerHTML = `<div class="eventcardhost ${day % 3 ? '' : 'freegig'}"><div data-gigid="g${day}" data-gigstartdate="${start}"></div>
+      <div class="eventcard"><h4 class="headliner">Band ${day}</h4><p class="supports">W/ Support ${day}</p>
+      <p><span class="time">7:30pm</span><a class="venue" href="/gig-guide/venues/venue-${day % 4}">Venue ${day % 4}</a></p></div></div>`;
+    box.style.minHeight = '300px';
+    feed.append(h3, box);
+  }
+}
+addDays(10);
+window.addEventListener('scroll', () => {
+  if (loading || innerHeight + scrollY < document.body.scrollHeight - 200) return;
+  loading = true;
+  setTimeout(() => { addDays(10); loading = false; }, 400);  // pretend network delay
+});
+</script>
+</body></html>

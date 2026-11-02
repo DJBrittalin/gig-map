@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gig Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Archivo:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+/* Layout: listings panel on the left, map filling the rest; stacks to day strip, map, list on phones. */
+:root {
+  --paper: #f4f3f6;
+  --panel: #ffffff;
+  --ink: #18161c;
+  --muted: #6b6672;
+  --line: #e2dfe6;
+  --accent: #d1235f;
+  --accent-ink: #ffffff;
+  --chip: #2f4a2a;
+  --chip-ink: #ffffff;
+  --display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121015; --panel: #1b1920; --ink: #eeeaf1; --muted: #a29ca9; --line: #2e2a35;
+    --accent: #ff5c97; --accent-ink: #1a0d13; --chip: #9fd28f; --chip-ink: #12200e; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #121015; --panel: #1b1920; --ink: #eeeaf1; --muted: #a29ca9; --line: #2e2a35;
+  --accent: #ff5c97; --accent-ink: #1a0d13; --chip: #9fd28f; --chip-ink: #12200e; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font: 15px/1.45 var(--body); font-variant-numeric: tabular-nums;
+}
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.app { display: grid; grid-template-columns: minmax(320px, 400px) 1fr; height: 100%; }
+.panel { display: flex; flex-direction: column; min-height: 0; background: var(--panel); border-right: 1px solid var(--line); }
+.panel-top { padding: 20px max(20px, env(safe-area-inset-left, 0px)) 14px; display: grid; gap: 14px; border-bottom: 1px solid var(--line); }
+#map { height: 100%; background: var(--paper); }
+
+.brand { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.brand h1 { margin: 0; font: 800 15px/1 var(--display); letter-spacing: .14em; text-transform: uppercase; }
+.brand .jump { display: flex; gap: 6px; align-items: center; }
+.btn {
+  border: 1px solid var(--line); background: transparent; border-radius: 999px;
+  padding: 4px 12px; font-size: 13px; cursor: pointer;
+}
+.btn:hover { border-color: var(--ink); }
+input[type="date"] {
+  font: inherit; font-size: 13px; color: var(--ink); background: transparent;
+  border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px;
+}
+
+.day-title { margin: 0; font: 600 40px/0.95 var(--display); text-transform: uppercase; text-wrap: balance; }
+.day-title .wd { color: var(--accent); }
+
+.strip { display: grid; grid-template-columns: auto repeat(7, 1fr) auto; gap: 4px; align-items: stretch; }
+.strip .arrow { border: 0; background: transparent; cursor: pointer; padding: 0 4px; color: var(--muted); font-size: 18px; }
+.strip .arrow:hover { color: var(--ink); }
+.dcell {
+  border: 1px solid transparent; background: transparent; border-radius: 8px; cursor: pointer;
+  padding: 6px 0 5px; display: grid; justify-items: center; gap: 2px; min-width: 0;
+}
+.dcell:hover { border-color: var(--line); }
+.dcell .w { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.dcell .n { font: 600 20px/1 var(--display); }
+.dcell .c { font-size: 11px; color: var(--muted); height: 14px; }
+.dcell.has .c { color: var(--accent); font-weight: 600; }
+.dcell.today .n { text-decoration: underline; text-underline-offset: 3px; }
+.dcell[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); }
+.dcell[aria-pressed="true"] .w, .dcell[aria-pressed="true"] .n, .dcell[aria-pressed="true"] .c { color: var(--panel); }
+
+.list { overflow-y: auto; padding: 4px max(20px, env(safe-area-inset-left, 0px)) 20px; flex: 1; min-height: 0; }
+.venue { padding: 14px 0; border-bottom: 1px solid var(--line); display: grid; gap: 8px; }
+.venue-head { display: flex; align-items: center; gap: 10px; border: 0; background: none; padding: 0; text-align: left; cursor: pointer; }
+.venue-head:hover .vname { text-decoration: underline; }
+.pin { flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-size: 12px; font-weight: 600; display: grid; place-items: center; }
+.pin.off { background: var(--line); color: var(--muted); }
+.vname { font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; }
+.nomap { font-size: 12px; color: var(--muted); }
+.gig { display: grid; grid-template-columns: 62px 1fr; gap: 10px; padding-left: 32px; }
+.gig .t { color: var(--muted); font-size: 14px; }
+.gig .acts { min-width: 0; }
+.gig .head { font-size: 17px; font-weight: 500; line-height: 1.3; }
+.gig .head a { color: inherit; }
+.gig .sup { color: var(--muted); font-size: 14px; }
+.tags { display: flex; gap: 6px; margin-top: 4px; }
+.tag { background: var(--chip); color: var(--chip-ink); font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: 2px 9px; border-radius: 999px; }
+
+.empty { padding: 28px 0; color: var(--muted); display: grid; gap: 10px; justify-items: start; }
+.note { font-size: 12px; color: var(--muted); padding: 10px max(20px, env(safe-area-inset-left, 0px)); border-top: 1px solid var(--line); }
+.note a { color: inherit; }
+.sample { background: var(--accent); color: var(--accent-ink); font-size: 12px; font-weight: 500; padding: 6px 10px; border-radius: 6px; }
+
+/* map pins */
+.mpin { width: 30px; height: 30px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--accent); border: 2px solid var(--panel); box-shadow: 0 2px 6px rgba(0,0,0,.35); display: grid; place-items: center; }
+.mpin span { transform: rotate(45deg); color: var(--accent-ink); font: 600 13px/1 var(--body); }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--panel); color: var(--ink); }
+.leaflet-popup-content { margin: 12px 14px; font: 14px/1.4 var(--body); }
+.leaflet-popup-content .pv { font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+.leaflet-popup-content .pg { margin-top: 4px; }
+.leaflet-popup-content .pg b { font-weight: 600; }
+.leaflet-popup-content .pg span { color: var(--muted); }
+.leaflet-container a.leaflet-popup-close-button { color: var(--muted); }
+
+@media (max-width: 760px) {
+  .app { display: flex; flex-direction: column; height: auto; }
+  .panel { display: contents; }
+  .panel-top { order: 1; background: var(--panel); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  #map { order: 2; height: 46vh; min-height: 280px; }
+  .list { order: 3; background: var(--panel); overflow: visible; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .note { order: 4; background: var(--panel); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .day-title { font-size: 34px; }
+  .gig { padding-left: 0; grid-template-columns: 56px 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="panel">
+    <div class="panel-top">
+      <div class="brand">
+        <h1>Gig Map</h1>
+        <div class="jump">
+          <button class="btn" id="todayBtn" type="button">Today</button>
+          <input type="date" id="datePick" aria-label="Pick a date">
+        </div>
+      </div>
+      <h2 class="day-title" id="dayTitle"></h2>
+      <div class="strip" id="strip" role="group" aria-label="Choose a day"></div>
+      <div class="sample" id="sampleNote" hidden>Showing example listings. Real gigs appear after the scraper first runs.</div>
+    </div>
+    <div class="list" id="list" aria-live="polite"></div>
+    <div class="note" id="note"></div>
+  </aside>
+  <div id="map" aria-label="Map of venues with gigs on the chosen day"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(function () {
+  const START = [-33.9, 151.175];   // Inner West, Sydney
+  const WD = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const MO = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const ymd = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  const fromYmd = (s) => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+  const addDays = (s, n) => { const d = fromYmd(s); d.setDate(d.getDate() + n); return ymd(d); };
+  const todayStr = () => ymd(new Date());
+  const minutes = (t) => {
+    const m = /(\d{1,2})(?::(\d{2}))?\s*(am|pm)?/i.exec(t || "");
+    if (!m) return 9999;
+    let h = +m[1] % 12; if ((m[3] || "").toLowerCase() === "pm") h += 12;
+    return h * 60 + (+m[2] || 0);
+  };
+  const tagLabel = (tags) => tags.includes("pwyc") ? ["PWYC"] : tags.includes("free") ? ["Free"] : tags.map((t) => t.toUpperCase());
+
+  let data = { venues: {}, gigs: [] };
+  let byDate = {};
+  let current = todayStr();
+  let markers = {};
+
+  // ---- map ----
+  const map = L.map("map", { zoomControl: true }).setView(START, 13);
+  const dark = window.matchMedia("(prefers-color-scheme: dark)");
+  let tiles;
+  function setTiles() {
+    const theme = document.documentElement.dataset.theme;
+    const useDark = theme ? theme === "dark" : dark.matches;
+    if (tiles) map.removeLayer(tiles);
+    tiles = L.tileLayer(`https://{s}.basemaps.cartocdn.com/${useDark ? "dark_all" : "light_all"}/{z}/{x}/{y}{r}.png`, {
+      maxZoom: 19, subdomains: "abcd",
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+    }).addTo(map);
+  }
+  setTiles();
+  dark.addEventListener?.("change", setTiles);
+  const markerLayer = L.layerGroup().addTo(map);
+
+  function pinIcon(n) {
+    return L.divIcon({ className: "", html: `<div class="mpin"><span>${n}</span></div>`, iconSize: [30, 30], iconAnchor: [15, 30], popupAnchor: [0, -30] });
+  }
+
+  // ---- rendering ----
+  function groupByVenue(gigs) {
+    const groups = {};
+    for (const g of gigs) (groups[g.venue] ||= []).push(g);
+    return Object.entries(groups)
+      .map(([vid, list]) => ({ vid, venue: data.venues[vid] || { name: vid }, gigs: list.sort((a, b) => minutes(a.time) - minutes(b.time)) }))
+      .sort((a, b) => minutes(a.gigs[0].time) - minutes(b.gigs[0].time) || a.venue.name.localeCompare(b.venue.name));
+  }
+
+  function gigHtml(g) {
+    const heads = g.headliners.map((h) => g.link ? `<a href="${esc(g.link)}" target="_blank" rel="noopener">${esc(h)}</a>` : esc(h)).join(" + ");
+    const sup = g.supports.length ? `<div class="sup">with ${esc(g.supports.join(", "))}</div>` : "";
+    const tags = tagLabel(g.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join("");
+    return `<div class="gig"><div class="t">${esc(g.time)}</div><div class="acts"><div class="head">${heads}</div>${sup}${tags ? `<div class="tags">${tags}</div>` : ""}</div></div>`;
+  }
+
+  function renderTitle() {
+    const d = fromYmd(current);
+    $("dayTitle").innerHTML = `<span class="wd">${WD[d.getDay()]}</span> ${d.getDate()} ${MO[d.getMonth()]} ${d.getFullYear()}`;
+    $("datePick").value = current;
+  }
+
+  function renderStrip() {
+    // Monday-to-Sunday week containing the chosen day
+    const d = fromYmd(current);
+    const monday = addDays(current, -((d.getDay() + 6) % 7));
+    const today = todayStr();
+    let html = `<button class="arrow" type="button" data-step="-7" aria-label="Previous week">&#8249;</button>`;
+    for (let i = 0; i < 7; i++) {
+      const day = addDays(monday, i);
+      const dd = fromYmd(day);
+      const n = (byDate[day] || []).length;
+      html += `<button type="button" class="dcell${n ? " has" : ""}${day === today ? " today" : ""}" data-day="${day}" aria-pressed="${day === current}" aria-label="${WD[dd.getDay()]} ${dd.getDate()} ${MO[dd.getMonth()]}, ${n} gig${n === 1 ? "" : "s"}">
+        <span class="w">${WD[dd.getDay()].slice(0, 3)}</span><span class="n">${dd.getDate()}</span><span class="c">${n || ""}</span></button>`;
+    }
+    html += `<button class="arrow" type="button" data-step="7" aria-label="Next week">&#8250;</button>`;
+    $("strip").innerHTML = html;
+  }
+
+  function renderList(groups) {
+    if (!groups.length) {
+      const next = Object.keys(byDate).sort().find((d) => d > current);
+      $("list").innerHTML = `<div class="empty"><div>No gigs listed for this day.</div>${next ? `<button class="btn" type="button" data-go="${next}">Next gig day: ${fromYmd(next).getDate()} ${MO[fromYmd(next).getMonth()]}</button>` : ""}</div>`;
+      return;
+    }
+    let i = 0;
+    $("list").innerHTML = groups.map((grp) => {
+      const onMap = grp.venue.lat != null && grp.venue.lng != null;
+      const label = onMap ? ++i : "";
+      grp.label = label;
+      return `<section class="venue">
+        <button class="venue-head" type="button" data-venue="${esc(grp.vid)}" ${onMap ? "" : "disabled"}>
+          <span class="pin${onMap ? "" : " off"}">${label || "?"}</span>
+          <span class="vname">${esc(grp.venue.name)}</span>
+          ${onMap ? "" : `<span class="nomap">not on map yet</span>`}
+        </button>
+        ${grp.gigs.map(gigHtml).join("")}
+      </section>`;
+    }).join("");
+  }
+
+  function renderMap(groups) {
+    markerLayer.clearLayers();
+    markers = {};
+    const pts = [];
+    for (const grp of groups) {
+      const v = grp.venue;
+      if (v.lat == null || v.lng == null) continue;
+      const popup = `<div class="pv">${esc(v.name)}</div>` + grp.gigs.map((g) =>
+        `<div class="pg"><b>${esc(g.headliners.join(" + "))}</b><br><span>${esc(g.time)}${g.supports.length ? " · with " + esc(g.supports.join(", ")) : ""}</span></div>`).join("");
+      const m = L.marker([v.lat, v.lng], { icon: pinIcon(grp.label), title: v.name }).bindPopup(popup).addTo(markerLayer);
+      markers[grp.vid] = m;
+      pts.push([v.lat, v.lng]);
+    }
+    if (pts.length === 1) map.setView(pts[0], Math.max(map.getZoom(), 14));
+    else if (pts.length) map.fitBounds(pts, { padding: [50, 50], maxZoom: 15 });
+  }
+
+  function render() {
+    const groups = groupByVenue(byDate[current] || []);
+    renderTitle();
+    renderStrip();
+    renderList(groups);
+    renderMap(groups);
+  }
+
+  function go(day) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(day || "")) return;
+    current = day;
+    if (location.hash.slice(1) !== day) history.replaceState(null, "", "#" + day);
+    render();
+  }
+
+  // ---- events ----
+  $("strip").addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (!b) return;
+    if (b.dataset.day) go(b.dataset.day);
+    if (b.dataset.step) go(addDays(current, +b.dataset.step));
+  });
+  $("list").addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (!b) return;
+    if (b.dataset.go) go(b.dataset.go);
+    const m = markers[b.dataset.venue];
+    if (m) { map.setView(m.getLatLng(), Math.max(map.getZoom(), 15)); m.openPopup(); }
+  });
+  $("todayBtn").addEventListener("click", () => go(todayStr()));
+  $("datePick").addEventListener("change", (e) => go(e.target.value));
+  window.addEventListener("hashchange", () => go(location.hash.slice(1)));
+  document.addEventListener("keydown", (e) => {
+    if (e.target.matches("input")) return;
+    if (e.key === "ArrowLeft") go(addDays(current, -1));
+    if (e.key === "ArrowRight") go(addDays(current, 1));
+  });
+
+  // ---- load ----
+  fetch("gigs.json", { cache: "no-store" })
+    .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then((json) => {
+      data = json;
+      byDate = {};
+      for (const g of data.gigs) (byDate[g.date] ||= []).push(g);
+      $("sampleNote").hidden = !data.sample;
+      const when = new Date(data.updated);
+      $("note").innerHTML = `Listings updated ${when.toLocaleString(undefined, { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" })}` +
+        (data.source ? ` from <a href="${esc(data.source)}" target="_blank" rel="noopener">the gig guide</a>.` : ".");
+      const fromHash = location.hash.slice(1);
+      go(/^\d{4}-\d{2}-\d{2}$/.test(fromHash) ? fromHash : todayStr());
+    })
+    .catch(() => {
+      $("list").innerHTML = `<div class="empty">Couldn't load gigs.json. If you opened this file straight from your computer, run it through a local web server or view the hosted site instead.</div>`;
+      renderTitle(); renderStrip();
+    });
+})();
+</script>
+</body>
+</html>

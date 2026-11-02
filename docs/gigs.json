@@ -1,0 +1,23 @@
+{
+  "updated": "2026-11-02T10:00:00+00:00",
+  "source": "",
+  "sample": true,
+  "venues": {
+    "21-shepherd-marrickville": {"name": "21 Shepherd", "lat": -33.9049, "lng": 151.1681},
+    "example-venue-enmore": {"name": "Example Venue (Enmore)", "lat": -33.9003, "lng": 151.1735},
+    "example-venue-newtown": {"name": "Example Venue (Newtown)", "lat": -33.8975, "lng": 151.1790},
+    "example-venue-marrickville": {"name": "Example Venue (Marrickville)", "lat": -33.9110, "lng": 151.1558},
+    "example-venue-petersham": {"name": "Example Venue (Petersham)", "lat": -33.8945, "lng": 151.1550}
+  },
+  "gigs": [
+    {"id": "I7USlAzzRx2XYKh_tENm8w", "date": "2026-11-02", "time": "6:30pm", "headliners": ["Delphine Dora (FRA)"], "supports": ["Monica Brooks"], "venue": "21-shepherd-marrickville", "tags": ["free", "pwyc"], "link": ""},
+    {"id": "s1", "sample": true, "date": "2026-11-02", "time": "8:00pm", "headliners": ["Example Act A"], "supports": ["Example Support"], "venue": "example-venue-enmore", "tags": [], "link": ""},
+    {"id": "s2", "sample": true, "date": "2026-11-03", "time": "7:30pm", "headliners": ["Example Act B"], "supports": [], "venue": "example-venue-newtown", "tags": ["free"], "link": ""},
+    {"id": "s3", "sample": true, "date": "2026-11-04", "time": "7:00pm", "headliners": ["Example Act C", "Example Act D"], "supports": ["Example Support"], "venue": "example-venue-marrickville", "tags": [], "link": ""},
+    {"id": "s4", "sample": true, "date": "2026-11-04", "time": "9:00pm", "headliners": ["Example Act E"], "supports": [], "venue": "example-venue-enmore", "tags": [], "link": ""},
+    {"id": "s5", "sample": true, "date": "2026-11-05", "time": "8:00pm", "headliners": ["Example Act F"], "supports": ["Example Support", "Another Support"], "venue": "example-venue-petersham", "tags": ["pwyc"], "link": ""},
+    {"id": "s6", "sample": true, "date": "2026-11-06", "time": "6:00pm", "headliners": ["Example Act G"], "supports": [], "venue": "21-shepherd-marrickville", "tags": [], "link": ""},
+    {"id": "s7", "sample": true, "date": "2026-11-06", "time": "8:30pm", "headliners": ["Example Act H"], "supports": [], "venue": "example-venue-newtown", "tags": [], "link": ""},
+    {"id": "s8", "sample": true, "date": "2026-11-06", "time": "9:00pm", "headliners": ["Example Act I"], "supports": ["Example Support"], "venue": "example-venue-enmore", "tags": [], "link": ""}
+  ]
+}
