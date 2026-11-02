@@ -5,115 +5,120 @@
     "21-shepherd-marrickville": {
       "name": "21 Shepherd",
       "address": "21 Shepherd Street, Marrickville NSW 2204",
-      "lat": null,
-      "lng": null,
+      "lat": -33.9085,
+      "lng": 151.1665,
       "url": "https://sydneymusic.net/gig-guide/venues/21-shepherd-marrickville",
-      "suburb": "Marrickville"
+      "suburb": "Marrickville",
+      "approx": true
     },
     "enmore-hotel": {
       "name": "Enmore Hotel",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8981,
+      "lng": 151.1745,
       "url": "https://sydneymusic.net/gig-guide/venues/enmore-hotel"
     },
     "church-st-studios": {
       "name": "Church St Studios",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/church-st-studios"
+      "lat": -33.8886,
+      "lng": 151.1783,
+      "url": "https://sydneymusic.net/gig-guide/venues/church-st-studios",
+      "approx": true
     },
     "title-records-surry-hills": {
       "name": "TITLE Records - Surry Hills",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/title-records-surry-hills"
+      "lat": -33.887,
+      "lng": 151.2128,
+      "url": "https://sydneymusic.net/gig-guide/venues/title-records-surry-hills",
+      "approx": true
     },
     "phoenix-central-park": {
       "name": "Phoenix Central Park",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8862,
+      "lng": 151.1987,
       "url": "https://sydneymusic.net/gig-guide/venues/phoenix-central-park"
     },
     "stadium-rockdale-tramway-arcade": {
       "name": "Stadium Rockdale",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.9527,
+      "lng": 151.1372,
       "url": "https://sydneymusic.net/gig-guide/venues/stadium-rockdale-tramway-arcade",
-      "suburb": "Tramway Arcade"
+      "suburb": "Tramway Arcade",
+      "approx": true
     },
     "the-fusebox-the-factory": {
       "name": "The Fusebox @ Factory Theatre",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.907,
+      "lng": 151.1603,
       "url": "https://sydneymusic.net/gig-guide/venues/the-fusebox-the-factory"
     },
     "enmore-theatre": {
       "name": "Enmore Theatre",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8995,
+      "lng": 151.1735,
       "url": "https://sydneymusic.net/gig-guide/venues/enmore-theatre"
     },
     "butchers-brew-bar": {
       "name": "Butchers Brew Bar",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.905,
+      "lng": 151.14,
       "url": "https://sydneymusic.net/gig-guide/venues/butchers-brew-bar"
     },
     "camelot-lounge": {
       "name": "Camelot Lounge",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.9125,
+      "lng": 151.1668,
       "url": "https://sydneymusic.net/gig-guide/venues/camelot-lounge"
     },
     "lazybones": {
       "name": "Lazybones Lounge",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.9113,
+      "lng": 151.1555,
       "url": "https://sydneymusic.net/gig-guide/venues/lazybones"
     },
     "pact-centre-for-emerging-artists": {
       "name": "PACT Centre for Emerging Artists",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.901,
+      "lng": 151.1855,
       "url": "https://sydneymusic.net/gig-guide/venues/pact-centre-for-emerging-artists"
     },
     "mothership-studios": {
       "name": "Mothership Studios",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/mothership-studios"
+      "lat": -33.909,
+      "lng": 151.16,
+      "url": "https://sydneymusic.net/gig-guide/venues/mothership-studios",
+      "approx": true
     },
     "lvl-1-lazybones": {
       "name": "Level 1 @ Lazybones Lounge",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.91122,
+      "lng": 151.15565,
       "url": "https://sydneymusic.net/gig-guide/venues/lvl-1-lazybones"
     },
     "metro-social-the-metro-theatre": {
       "name": "Metro Social @ Metro Theatre",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8769,
+      "lng": 151.2066,
       "url": "https://sydneymusic.net/gig-guide/venues/metro-social-the-metro-theatre"
     },
     "the-lansdowne": {
       "name": "The Lansdowne",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8853,
+      "lng": 151.1973,
       "url": "https://sydneymusic.net/gig-guide/venues/the-lansdowne"
     },
     "hum-on-king": {
@@ -126,107 +131,110 @@
     "seymour-centre": {
       "name": "Seymour Centre",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8889,
+      "lng": 151.1918,
       "url": "https://sydneymusic.net/gig-guide/venues/seymour-centre"
     },
     "metro-theatre": {
       "name": "Metro Theatre",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.877,
+      "lng": 151.2065,
       "url": "https://sydneymusic.net/gig-guide/venues/metro-theatre"
     },
     "rosscos-bar-brookvale": {
       "name": "Rossco's Bar",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/rosscos-bar-brookvale"
+      "lat": -33.766,
+      "lng": 151.272,
+      "url": "https://sydneymusic.net/gig-guide/venues/rosscos-bar-brookvale",
+      "approx": true
     },
     "oaf-gallery-oxford-art-factory": {
       "name": "OAF Gallery @ Oxford Art Factory",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.87772,
+      "lng": 151.21368,
       "url": "https://sydneymusic.net/gig-guide/venues/oaf-gallery-oxford-art-factory"
     },
     "petersham-bowling-club": {
       "name": "Petersham Bowling Club",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8935,
+      "lng": 151.1545,
       "url": "https://sydneymusic.net/gig-guide/venues/petersham-bowling-club"
     },
     "oxford-art-factory": {
       "name": "Oxford Art Factory",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8778,
+      "lng": 151.2136,
       "url": "https://sydneymusic.net/gig-guide/venues/oxford-art-factory"
     },
     "the-eveleigh": {
       "name": "The Eveleigh Hotel",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8915,
+      "lng": 151.198,
       "url": "https://sydneymusic.net/gig-guide/venues/the-eveleigh"
     },
     "low-302": {
       "name": "Low 302",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8805,
+      "lng": 151.216,
       "url": "https://sydneymusic.net/gig-guide/venues/low-302"
     },
     "gasoline-pony": {
       "name": "Gasoline Pony",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.9112,
+      "lng": 151.1622,
       "url": "https://sydneymusic.net/gig-guide/venues/gasoline-pony"
     },
     "moshpit-bar": {
       "name": "MoshPit Bar",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/moshpit-bar"
+      "lat": -33.9005,
+      "lng": 151.1855,
+      "url": "https://sydneymusic.net/gig-guide/venues/moshpit-bar",
+      "approx": true
     },
     "qudos-bank-arena": {
       "name": "Sydney SuperDome",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8467,
+      "lng": 151.0702,
       "url": "https://sydneymusic.net/gig-guide/venues/qudos-bank-arena"
     },
     "the-vanguard": {
       "name": "The Vanguard",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8889,
+      "lng": 151.1823,
       "url": "https://sydneymusic.net/gig-guide/venues/the-vanguard"
     },
     "state-theatre": {
       "name": "State Theatre",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8711,
+      "lng": 151.207,
       "url": "https://sydneymusic.net/gig-guide/venues/state-theatre"
     },
     "manning-house": {
       "name": "Manning Open-Air @ Manning House",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8866,
+      "lng": 151.1887,
       "url": "https://sydneymusic.net/gig-guide/venues/manning-house"
     },
     "heaps-normal-health-club": {
       "name": "Heaps Normal Health Club",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/heaps-normal-health-club"
+      "lat": -33.911,
+      "lng": 151.158,
+      "url": "https://sydneymusic.net/gig-guide/venues/heaps-normal-health-club",
+      "approx": true
     },
     "3bridges-youth-zone": {
       "name": "3Bridges Youth Zone",
@@ -240,7 +248,8 @@
       "address": "",
       "lat": null,
       "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/secret-location"
+      "url": "https://sydneymusic.net/gig-guide/venues/secret-location",
+      "skip": true
     },
     "gifts-of-mercy-emporium": {
       "name": "Gifts of Mercy Emporium",
@@ -252,16 +261,17 @@
     "the-bridge-hotel": {
       "name": "The Bridge Hotel",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.864,
+      "lng": 151.172,
       "url": "https://sydneymusic.net/gig-guide/venues/the-bridge-hotel"
     },
     "palomino-lounge": {
       "name": "Palomino Lounge",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/palomino-lounge"
+      "lat": -33.8998,
+      "lng": 151.1728,
+      "url": "https://sydneymusic.net/gig-guide/venues/palomino-lounge",
+      "approx": true
     },
     "the-church": {
       "name": "The Church",
@@ -273,278 +283,287 @@
     "django-bar-camelot-lounge": {
       "name": "Django Bar @ Camelot Lounge",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.91242,
+      "lng": 151.16692,
       "url": "https://sydneymusic.net/gig-guide/venues/django-bar-camelot-lounge"
     },
     "bootleggers-kelly-s-on-king": {
       "name": "Bootleggers @ Kelly's On King",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8963,
+      "lng": 151.18,
       "url": "https://sydneymusic.net/gig-guide/venues/bootleggers-kelly-s-on-king"
     },
     "elton-chong": {
       "name": "Elton Chong",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/elton-chong"
+      "lat": -33.751,
+      "lng": 150.694,
+      "url": "https://sydneymusic.net/gig-guide/venues/elton-chong",
+      "approx": true
     },
     "hollywood-hotel": {
       "name": "Hollywood Hotel",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.88,
+      "lng": 151.2093,
       "url": "https://sydneymusic.net/gig-guide/venues/hollywood-hotel"
     },
     "liberty-hall-entertainment-quarter": {
       "name": "Liberty Hall",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8925,
+      "lng": 151.2265,
       "url": "https://sydneymusic.net/gig-guide/venues/liberty-hall-entertainment-quarter",
       "suburb": "Entertainment Quarter"
     },
     "sappho-books-cafe-and-bar": {
       "name": "Sappho Books, Cafe & Bar",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.88,
+      "lng": 151.188,
       "url": "https://sydneymusic.net/gig-guide/venues/sappho-books-cafe-and-bar"
     },
     "chuck-trailers": {
       "name": "Chuck Trailer's – CBD",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/chuck-trailers"
+      "lat": -33.87,
+      "lng": 151.207,
+      "url": "https://sydneymusic.net/gig-guide/venues/chuck-trailers",
+      "approx": true
     },
     "buddys-bar-newtown": {
       "name": "Buddy's Bar Newtown",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8972,
+      "lng": 151.1792,
       "url": "https://sydneymusic.net/gig-guide/venues/buddys-bar-newtown"
     },
     "beach-road-hotel": {
       "name": "Beach Road Hotel",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.889,
+      "lng": 151.272,
       "url": "https://sydneymusic.net/gig-guide/venues/beach-road-hotel"
     },
     "sydney-event-centre": {
       "name": "Sydney Event Centre",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8745,
+      "lng": 151.199,
       "url": "https://sydneymusic.net/gig-guide/venues/sydney-event-centre"
     },
     "the-chippo-hotel": {
       "name": "The Chippo Hotel",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8865,
+      "lng": 151.196,
       "url": "https://sydneymusic.net/gig-guide/venues/the-chippo-hotel"
     },
     "crowbar": {
       "name": "Crowbar",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.881,
+      "lng": 151.16,
       "url": "https://sydneymusic.net/gig-guide/venues/crowbar"
     },
     "factory-floor-the-factory": {
       "name": "Factory Floor @ Factory Theatre",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.9069,
+      "lng": 151.16015,
       "url": "https://sydneymusic.net/gig-guide/venues/factory-floor-the-factory"
     },
     "botany-view-hotel": {
       "name": "Botany View Hotel",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.9045,
+      "lng": 151.1752,
       "url": "https://sydneymusic.net/gig-guide/venues/botany-view-hotel"
     },
     "golden-age-cinema-bar": {
       "name": "Golden Age Cinema & Bar",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.88,
+      "lng": 151.2095,
       "url": "https://sydneymusic.net/gig-guide/venues/golden-age-cinema-bar"
     },
     "waywards-ballroom": {
       "name": "Waywards Ballroom",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8977,
+      "lng": 151.1797,
       "url": "https://sydneymusic.net/gig-guide/venues/waywards-ballroom"
     },
     "lansdowne-ground-floor": {
       "name": "Ground Floor @ The Lansdowne",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.88522,
+      "lng": 151.19742,
       "url": "https://sydneymusic.net/gig-guide/venues/lansdowne-ground-floor"
     },
     "dead-set-darlinghurst-darlo-kinselas": {
       "name": "Dead Set",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.88,
+      "lng": 151.2175,
       "url": "https://sydneymusic.net/gig-guide/venues/dead-set-darlinghurst-darlo-kinselas",
       "suburb": "Darlinghurst Darlo Kinselas"
     },
     "sydney-opera-house": {
       "name": "Sydney Opera House Concert Hall",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8568,
+      "lng": 151.2153,
       "url": "https://sydneymusic.net/gig-guide/venues/sydney-opera-house"
     },
     "vic-on-the-park": {
       "name": "Vic on the Park",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.9,
+      "lng": 151.162,
       "url": "https://sydneymusic.net/gig-guide/venues/vic-on-the-park"
     },
     "chinese-laundry-sydney": {
       "name": "Chinese Laundry",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.868,
+      "lng": 151.2035,
       "url": "https://sydneymusic.net/gig-guide/venues/chinese-laundry-sydney",
       "suburb": "Sydney"
     },
     "ramblin-rascal-tavern": {
       "name": "Ramblin' Rascal Tavern",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.877,
+      "lng": 151.2105,
       "url": "https://sydneymusic.net/gig-guide/venues/ramblin-rascal-tavern"
     },
     "club-77": {
       "name": "Club 77",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8745,
+      "lng": 151.2185,
       "url": "https://sydneymusic.net/gig-guide/venues/club-77"
     },
     "hordern-pavilion": {
       "name": "Hordern Pavilion",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8925,
+      "lng": 151.2245,
       "url": "https://sydneymusic.net/gig-guide/venues/hordern-pavilion"
     },
     "manly-leagues-club": {
       "name": "Manly Leagues Club",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.7645,
+      "lng": 151.2685,
       "url": "https://sydneymusic.net/gig-guide/venues/manly-leagues-club"
     },
     "factory-theatre": {
       "name": "Factory Theatre",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.9068,
+      "lng": 151.16,
       "url": "https://sydneymusic.net/gig-guide/venues/factory-theatre"
     },
     "sauce-brewing-co": {
       "name": "Sauce Brewing Co",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/sauce-brewing-co"
+      "lat": -33.91,
+      "lng": 151.159,
+      "url": "https://sydneymusic.net/gig-guide/venues/sauce-brewing-co",
+      "approx": true
     },
     "fraser-park": {
       "name": "Fraser Park",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/fraser-park"
+      "lat": -33.915,
+      "lng": 151.163,
+      "url": "https://sydneymusic.net/gig-guide/venues/fraser-park",
+      "approx": true
     },
     "mixtape-brewing-marrickville": {
       "name": "Mixtape Brewing & Bar",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/mixtape-brewing-marrickville"
+      "lat": -33.908,
+      "lng": 151.161,
+      "url": "https://sydneymusic.net/gig-guide/venues/mixtape-brewing-marrickville",
+      "approx": true
     },
     "young-henrys-brewery": {
       "name": "Young Henrys Brewery",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8975,
+      "lng": 151.177,
       "url": "https://sydneymusic.net/gig-guide/venues/young-henrys-brewery"
     },
     "the-gaelic-club": {
       "name": "The Gaelic Club",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.884,
+      "lng": 151.209,
       "url": "https://sydneymusic.net/gig-guide/venues/the-gaelic-club"
     },
     "the-burdekin-band-room": {
       "name": "Band Room @ The Burdekin",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8775,
+      "lng": 151.2125,
       "url": "https://sydneymusic.net/gig-guide/venues/the-burdekin-band-room"
     },
     "the-underground": {
       "name": "The Underground",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/the-underground"
+      "lat": -33.8835,
+      "lng": 151.2005,
+      "url": "https://sydneymusic.net/gig-guide/venues/the-underground",
+      "approx": true
     },
     "jura-books": {
       "name": "Jura Books",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8885,
+      "lng": 151.156,
       "url": "https://sydneymusic.net/gig-guide/venues/jura-books"
     },
     "richmond-regent-theatre": {
       "name": "Richmond Regent Theatre",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/richmond-regent-theatre"
+      "lat": -33.6,
+      "lng": 150.7525,
+      "url": "https://sydneymusic.net/gig-guide/venues/richmond-regent-theatre",
+      "approx": true
     },
     "sneaky-possum": {
       "name": "Sneaky Possum",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/sneaky-possum"
+      "lat": -33.888,
+      "lng": 151.1975,
+      "url": "https://sydneymusic.net/gig-guide/venues/sneaky-possum",
+      "approx": true
     },
     "city-recital-hall": {
       "name": "City Recital Hall",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8668,
+      "lng": 151.2085,
       "url": "https://sydneymusic.net/gig-guide/venues/city-recital-hall"
     },
     "marrickville-bowling-club": {
       "name": "Marrickville Bowling Club",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.908,
+      "lng": 151.169,
       "url": "https://sydneymusic.net/gig-guide/venues/marrickville-bowling-club"
     },
     "ted-blackwood-youth-and-community-hall": {
       "name": "Ted Blackwood Community Hall",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/ted-blackwood-youth-and-community-hall"
+      "lat": -33.6915,
+      "lng": 151.299,
+      "url": "https://sydneymusic.net/gig-guide/venues/ted-blackwood-youth-and-community-hall",
+      "approx": true
     },
     "prop-records": {
       "name": "Prop Records",
@@ -556,8 +575,8 @@
     "golden-barley-hotel": {
       "name": "Golden Barley Hotel",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.901,
+      "lng": 151.1715,
       "url": "https://sydneymusic.net/gig-guide/venues/golden-barley-hotel"
     },
     "the-mitch-alexandria": {
@@ -571,109 +590,111 @@
     "union-hotel": {
       "name": "Union Hotel",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.9028,
+      "lng": 151.1782,
       "url": "https://sydneymusic.net/gig-guide/venues/union-hotel"
     },
     "7th-day-brewery": {
       "name": "7th Day Brewery",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/7th-day-brewery"
+      "lat": -33.766,
+      "lng": 151.27,
+      "url": "https://sydneymusic.net/gig-guide/venues/7th-day-brewery",
+      "approx": true
     },
     "avalon-rsl": {
       "name": "Avalon RSL",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.6365,
+      "lng": 151.329,
       "url": "https://sydneymusic.net/gig-guide/venues/avalon-rsl"
     },
     "the-burdekin-level-1": {
       "name": "Level 1 @ The Burdekin",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.87742,
+      "lng": 151.21262,
       "url": "https://sydneymusic.net/gig-guide/venues/the-burdekin-level-1"
     },
     "the-townie": {
       "name": "The Townie",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8975,
+      "lng": 151.1795,
       "url": "https://sydneymusic.net/gig-guide/venues/the-townie"
     },
     "glenorie-rsl": {
       "name": "Glenorie RSL",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.602,
+      "lng": 151.009,
       "url": "https://sydneymusic.net/gig-guide/venues/glenorie-rsl"
     },
     "addison-road-community-centre": {
       "name": "Addison Road Community Centre",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.903,
+      "lng": 151.153,
       "url": "https://sydneymusic.net/gig-guide/venues/addison-road-community-centre"
     },
     "the-lord-gladstone": {
       "name": "The Lord Gladstone",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8895,
+      "lng": 151.2005,
       "url": "https://sydneymusic.net/gig-guide/venues/the-lord-gladstone"
     },
     "wintle-theatre": {
       "name": "Wintle Theatre @ Juniors Kingsford",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.923,
+      "lng": 151.2275,
       "url": "https://sydneymusic.net/gig-guide/venues/wintle-theatre"
     },
     "ivy-merivale": {
       "name": "Ivy",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.867,
+      "lng": 151.2075,
       "url": "https://sydneymusic.net/gig-guide/venues/ivy-merivale",
       "suburb": "Merivale"
     },
     "manning-bar-usyd": {
       "name": "Manning Bar",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8869,
+      "lng": 151.1884,
       "url": "https://sydneymusic.net/gig-guide/venues/manning-bar-usyd",
       "suburb": "Usyd"
     },
     "accor-stadium": {
       "name": "Stadium Australia",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.847,
+      "lng": 151.0635,
       "url": "https://sydneymusic.net/gig-guide/venues/accor-stadium"
     },
     "brass-monkey": {
       "name": "Brass Monkey",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -34.0545,
+      "lng": 151.1525,
       "url": "https://sydneymusic.net/gig-guide/venues/brass-monkey"
     },
     "vespertine-sydney": {
       "name": "Vespertine",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.865,
+      "lng": 151.209,
       "url": "https://sydneymusic.net/gig-guide/venues/vespertine-sydney",
-      "suburb": "Sydney"
+      "suburb": "Sydney",
+      "approx": true
     },
     "powerhouse-parramatta": {
       "name": "Powerhouse Parramatta",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.818,
+      "lng": 151.01,
       "url": "https://sydneymusic.net/gig-guide/venues/powerhouse-parramatta"
     },
     "iron-bark-studios": {
@@ -693,235 +714,241 @@
     "knox-st-bar": {
       "name": "Knox St Bar",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8865,
+      "lng": 151.1985,
       "url": "https://sydneymusic.net/gig-guide/venues/knox-st-bar"
     },
     "kr-studio-206-hibernian-house": {
       "name": "KR Studio 206 @ Hibernian House",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.884,
+      "lng": 151.208,
       "url": "https://sydneymusic.net/gig-guide/venues/kr-studio-206-hibernian-house"
     },
     "icc-sydney-theatre": {
       "name": "ICC Sydney Theatre",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.874,
+      "lng": 151.1995,
       "url": "https://sydneymusic.net/gig-guide/venues/icc-sydney-theatre"
     },
     "dee-why-rsl-club": {
       "name": "Dee Why RSL Club",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.752,
+      "lng": 151.287,
       "url": "https://sydneymusic.net/gig-guide/venues/dee-why-rsl-club"
     },
     "the-duke-of-enmore": {
       "name": "The Duke of Enmore",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.9005,
+      "lng": 151.1715,
       "url": "https://sydneymusic.net/gig-guide/venues/the-duke-of-enmore"
     },
     "the-abercrombie": {
       "name": "The Abercrombie",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.884,
+      "lng": 151.198,
       "url": "https://sydneymusic.net/gig-guide/venues/the-abercrombie"
     },
     "petersham-town-hall": {
       "name": "Petersham Town Hall",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.893,
+      "lng": 151.1525,
       "url": "https://sydneymusic.net/gig-guide/venues/petersham-town-hall"
     },
     "white-bay-power-station": {
       "name": "White Bay Power Station",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8665,
+      "lng": 151.1785,
       "url": "https://sydneymusic.net/gig-guide/venues/white-bay-power-station"
     },
     "sydenham-skate-park": {
       "name": "Sydenham Skate Park",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/sydenham-skate-park"
+      "lat": -33.9175,
+      "lng": 151.168,
+      "url": "https://sydneymusic.net/gig-guide/venues/sydenham-skate-park",
+      "approx": true
     },
     "the-domain": {
       "name": "The Domain",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8695,
+      "lng": 151.2155,
       "url": "https://sydneymusic.net/gig-guide/venues/the-domain"
     },
     "humph-hall": {
       "name": "Humph Hall",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/humph-hall"
+      "lat": -33.77,
+      "lng": 151.25,
+      "url": "https://sydneymusic.net/gig-guide/venues/humph-hall",
+      "approx": true
     },
     "coliseum-theatre-western-sydney": {
       "name": "Coliseum Theatre",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.772,
+      "lng": 150.844,
       "url": "https://sydneymusic.net/gig-guide/venues/coliseum-theatre-western-sydney",
       "suburb": "Western Sydney"
     },
     "darling-harbour-theatre": {
       "name": "Darling Harbour Theatre",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8737,
+      "lng": 151.1992,
       "url": "https://sydneymusic.net/gig-guide/venues/darling-harbour-theatre"
     },
     "wings-and-tins-dee-why": {
       "name": "Wings and Tins Dee Why",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/wings-and-tins-dee-why"
+      "lat": -33.7535,
+      "lng": 151.286,
+      "url": "https://sydneymusic.net/gig-guide/venues/wings-and-tins-dee-why",
+      "approx": true
     },
     "beresford-upstairs": {
       "name": "The Beresford",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8825,
+      "lng": 151.2165,
       "url": "https://sydneymusic.net/gig-guide/venues/beresford-upstairs"
     },
     "liberty-hall-coach-bay": {
       "name": "Liberty Hall Coach Bay",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.89235,
+      "lng": 151.22675,
       "url": "https://sydneymusic.net/gig-guide/venues/liberty-hall-coach-bay"
     },
     "allianz-stadium": {
       "name": "Sydney Football Stadium",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.889,
+      "lng": 151.225,
       "url": "https://sydneymusic.net/gig-guide/venues/allianz-stadium"
     },
     "desire-books-records": {
       "name": "Desire Books & Records",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/desire-books-records"
+      "lat": -33.7975,
+      "lng": 151.285,
+      "url": "https://sydneymusic.net/gig-guide/venues/desire-books-records",
+      "approx": true
     },
     "art-gallery-of-nsw": {
       "name": "Art Gallery of NSW",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8688,
+      "lng": 151.2173,
       "url": "https://sydneymusic.net/gig-guide/venues/art-gallery-of-nsw"
     },
     "hopsters-brewery": {
       "name": "Hopsters Brewery",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.9003,
+      "lng": 151.172,
       "url": "https://sydneymusic.net/gig-guide/venues/hopsters-brewery"
     },
     "Concourse-Lounge-Chatswood": {
       "name": "Concourse Lounge",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.797,
+      "lng": 151.182,
       "url": "https://sydneymusic.net/gig-guide/venues/Concourse-Lounge-Chatswood"
     },
     "hayden-orpheum-cremorne": {
       "name": "Hayden Orpheum Picture Palace",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8295,
+      "lng": 151.227,
       "url": "https://sydneymusic.net/gig-guide/venues/hayden-orpheum-cremorne"
     },
     "annandale-ghost": {
       "name": "Annandale Ghost",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/annandale-ghost"
+      "lat": -33.884,
+      "lng": 151.1715,
+      "url": "https://sydneymusic.net/gig-guide/venues/annandale-ghost",
+      "approx": true
     },
     "fleet-steps": {
       "name": "Fleet Steps",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8605,
+      "lng": 151.2195,
       "url": "https://sydneymusic.net/gig-guide/venues/fleet-steps"
     },
     "35-richards-lane-surry-hills": {
       "name": "35 Richards Lane",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8855,
+      "lng": 151.211,
       "url": "https://sydneymusic.net/gig-guide/venues/35-richards-lane-surry-hills",
-      "suburb": "Surry Hills"
+      "suburb": "Surry Hills",
+      "approx": true
     },
     "the-mona-vale-hotel": {
       "name": "The Mona",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.6785,
+      "lng": 151.3035,
       "url": "https://sydneymusic.net/gig-guide/venues/the-mona-vale-hotel",
       "suburb": "Vale Hotel"
     },
     "aco-pier-2-3": {
       "name": "ACO Pier 2/3",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8545,
+      "lng": 151.204,
       "url": "https://sydneymusic.net/gig-guide/venues/aco-pier-2-3"
     },
     "leo-kelly-blacktown-arts-centre": {
       "name": "Leo Kelly Blacktown Arts Centre",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.77,
+      "lng": 150.907,
       "url": "https://sydneymusic.net/gig-guide/venues/leo-kelly-blacktown-arts-centre"
     },
     "felons-barrel-room": {
       "name": "Felons Barrel Room",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.7995,
+      "lng": 151.284,
       "url": "https://sydneymusic.net/gig-guide/venues/felons-barrel-room"
     },
     "goodspace-the-lord-gladstone": {
       "name": "Goodspace @ The Lord Gladstone",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.88962,
+      "lng": 151.20062,
       "url": "https://sydneymusic.net/gig-guide/venues/goodspace-the-lord-gladstone"
     },
     "penrith-panthers": {
       "name": "Penrith Panthers",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.76,
+      "lng": 150.683,
       "url": "https://sydneymusic.net/gig-guide/venues/penrith-panthers"
     },
     "factory-courtyard": {
       "name": "The Courtyard @ Factory Theatre",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.90672,
+      "lng": 151.16012,
       "url": "https://sydneymusic.net/gig-guide/venues/factory-courtyard"
     },
     "engadine-tavern": {
       "name": "Engadine Tavern",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -34.066,
+      "lng": 151.012,
       "url": "https://sydneymusic.net/gig-guide/venues/engadine-tavern"
     },
     "tango": {
@@ -934,15 +961,15 @@
     "ascham": {
       "name": "Ascham School",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8775,
+      "lng": 151.238,
       "url": "https://sydneymusic.net/gig-guide/venues/ascham"
     },
     "the-terminal-the-factory": {
       "name": "The Terminal @ Factory Theatre",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.90688,
+      "lng": 151.15988,
       "url": "https://sydneymusic.net/gig-guide/venues/the-terminal-the-factory"
     },
     "evergreen-music": {
@@ -955,15 +982,15 @@
     "red-rattler": {
       "name": "Red Rattler",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.9085,
+      "lng": 151.168,
       "url": "https://sydneymusic.net/gig-guide/venues/red-rattler"
     },
     "hunters-hill-town-hall": {
       "name": "Hunters Hill Town Hall",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8335,
+      "lng": 151.145,
       "url": "https://sydneymusic.net/gig-guide/venues/hunters-hill-town-hall"
     },
     "the-confectionery": {
@@ -976,50 +1003,51 @@
     "unsw-roundhouse": {
       "name": "UNSW Roundhouse",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.9165,
+      "lng": 151.227,
       "url": "https://sydneymusic.net/gig-guide/venues/unsw-roundhouse"
     },
     "surlys": {
       "name": "Surly's",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8835,
+      "lng": 151.213,
       "url": "https://sydneymusic.net/gig-guide/venues/surlys"
     },
     "st-johns-church": {
       "name": "St John's Church Darlinghurst",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8775,
+      "lng": 151.221,
       "url": "https://sydneymusic.net/gig-guide/venues/st-johns-church"
     },
     "tumbalong-park": {
       "name": "Tumbalong Park",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.877,
+      "lng": 151.2015,
       "url": "https://sydneymusic.net/gig-guide/venues/tumbalong-park"
     },
     "northies-hotel": {
       "name": "Northies Hotel",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -34.0525,
+      "lng": 151.154,
       "url": "https://sydneymusic.net/gig-guide/venues/northies-hotel"
     },
     "beer-shed-brewing-leumeah": {
       "name": "Beer Shed Brewing Co",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/beer-shed-brewing-leumeah"
+      "lat": -34.052,
+      "lng": 150.834,
+      "url": "https://sydneymusic.net/gig-guide/venues/beer-shed-brewing-leumeah",
+      "approx": true
     },
     "sydney-opera-house-forecourt": {
       "name": "Sydney Opera House Forecourt",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.85735,
+      "lng": 151.21445,
       "url": "https://sydneymusic.net/gig-guide/venues/sydney-opera-house-forecourt"
     },
     "eight-o-clock-sharp": {
@@ -1039,155 +1067,159 @@
     "the-manly-fig": {
       "name": "The Manly Fig",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/the-manly-fig"
+      "lat": -33.7975,
+      "lng": 151.286,
+      "url": "https://sydneymusic.net/gig-guide/venues/the-manly-fig",
+      "approx": true
     },
     "the-dome-sydney-showground": {
       "name": "Sydney Showground",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8455,
+      "lng": 151.0675,
       "url": "https://sydneymusic.net/gig-guide/venues/the-dome-sydney-showground"
     },
     "carriageworks": {
       "name": "Carriageworks",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8935,
+      "lng": 151.1925,
       "url": "https://sydneymusic.net/gig-guide/venues/carriageworks"
     },
     "civic-underground": {
       "name": "Civic Underground",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8775,
+      "lng": 151.2075,
       "url": "https://sydneymusic.net/gig-guide/venues/civic-underground"
     },
     "paddo-rsl": {
       "name": "Paddo RSL",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8845,
+      "lng": 151.228,
       "url": "https://sydneymusic.net/gig-guide/venues/paddo-rsl"
     },
     "leichhardt-town-hall": {
       "name": "Leichhardt Town Hall",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.882,
+      "lng": 151.1575,
       "url": "https://sydneymusic.net/gig-guide/venues/leichhardt-town-hall"
     },
     "engie-stadium": {
       "name": "Sydney Showground Stadium",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8435,
+      "lng": 151.0675,
       "url": "https://sydneymusic.net/gig-guide/venues/engie-stadium"
     },
     "utzon-room-sydney-opera-house": {
       "name": "Utzon Room @ Sydney Opera House",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.85655,
+      "lng": 151.21545,
       "url": "https://sydneymusic.net/gig-guide/venues/utzon-room-sydney-opera-house"
     },
     "pitt-street-uniting": {
       "name": "Pitt Street Uniting Church",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8735,
+      "lng": 151.2085,
       "url": "https://sydneymusic.net/gig-guide/venues/pitt-street-uniting"
     },
     "holme-garden": {
       "name": "Holme Garden",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8872,
+      "lng": 151.1895,
       "url": "https://sydneymusic.net/gig-guide/venues/holme-garden"
     },
     "pleasure-club": {
       "name": "Pleasure Club",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/pleasure-club"
+      "lat": -33.896,
+      "lng": 151.181,
+      "url": "https://sydneymusic.net/gig-guide/venues/pleasure-club",
+      "approx": true
     },
     "bankstown-arts-centre": {
       "name": "Bankstown Arts Centre",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.923,
+      "lng": 151.0285,
       "url": "https://sydneymusic.net/gig-guide/venues/bankstown-arts-centre"
     },
     "sydney-harbour": {
       "name": "Sydney Harbour",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/sydney-harbour"
+      "lat": -33.8555,
+      "lng": 151.224,
+      "url": "https://sydneymusic.net/gig-guide/venues/sydney-harbour",
+      "approx": true
     },
     "sydney-theatre-company-theatre-1": {
       "name": "Sydney Theatre Company, Theatre 1",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.855,
+      "lng": 151.2035,
       "url": "https://sydneymusic.net/gig-guide/venues/sydney-theatre-company-theatre-1"
     },
     "campbelltown-arts-centre": {
       "name": "Campbelltown Arts Centre",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -34.07,
+      "lng": 150.8125,
       "url": "https://sydneymusic.net/gig-guide/venues/campbelltown-arts-centre"
     },
     "joan-sutherland-performing-arts-centre": {
       "name": "Richard Bonynge Concert Hall @ Joan Sutherland Performing Arts Centre",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.751,
+      "lng": 150.691,
       "url": "https://sydneymusic.net/gig-guide/venues/joan-sutherland-performing-arts-centre"
     },
     "portugal-madeira-club": {
       "name": "Portugal Madeira Club",
       "address": "",
-      "lat": null,
-      "lng": null,
-      "url": "https://sydneymusic.net/gig-guide/venues/portugal-madeira-club"
+      "lat": -33.914,
+      "lng": 151.153,
+      "url": "https://sydneymusic.net/gig-guide/venues/portugal-madeira-club",
+      "approx": true
     },
     "taronga-zoo": {
       "name": "Taronga Zoo",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.843,
+      "lng": 151.241,
       "url": "https://sydneymusic.net/gig-guide/venues/taronga-zoo"
     },
     "centennial-park": {
       "name": "Centennial Park",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.898,
+      "lng": 151.233,
       "url": "https://sydneymusic.net/gig-guide/venues/centennial-park"
     },
     "hotel-steyne": {
       "name": "Hotel Steyne",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.7985,
+      "lng": 151.2865,
       "url": "https://sydneymusic.net/gig-guide/venues/hotel-steyne"
     },
     "selina-s-coogee-bay-hotel": {
       "name": "Selina's @ Coogee Bay Hotel",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.9205,
+      "lng": 151.2575,
       "url": "https://sydneymusic.net/gig-guide/venues/selina-s-coogee-bay-hotel"
     },
     "bondi-beach": {
       "name": "Bondi Beach",
       "address": "",
-      "lat": null,
-      "lng": null,
+      "lat": -33.8915,
+      "lng": 151.2767,
       "url": "https://sydneymusic.net/gig-guide/venues/bondi-beach"
     }
   },
