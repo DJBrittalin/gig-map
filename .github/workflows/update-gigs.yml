@@ -7,6 +7,7 @@ on:
   push:
     paths:
       - "gig-page*.html"
+      - "venues.json"     # editing a venue's address re-runs the map lookups
   workflow_dispatch: {}   # "Run workflow" button in the Actions tab
 
 permissions:
@@ -29,17 +30,18 @@ jobs:
       - name: Install libraries
         run: pip install requests beautifulsoup4
 
-      - name: Read the uploaded page
+      - name: Read the gigs and find venues
         env:
           SCRAPER_CONTACT: ${{ vars.SCRAPER_CONTACT }}
         run: |
           shopt -s nullglob
           files=(gig-page*.html)
           if [ ${#files[@]} -eq 0 ]; then
-            echo "No gig-page.html found. Upload one made with grab-gigs.js to the top level of the repository."
-            exit 1
+            echo "No new gig page uploaded, so just retrying venues that aren't on the map yet."
+            python scrape.py --venues-only
+          else
+            python scrape.py --file "gig-page*.html"
           fi
-          python scrape.py --file "gig-page*.html"
 
       - name: Save the new data
         run: |
