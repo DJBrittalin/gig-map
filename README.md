@@ -1,52 +1,58 @@
 # Gig Map
 
-A web page with a map and a day picker. Choose a day and the map shows which venues have gigs and who is playing. The listings come from a gig guide page, which a small Python script reads once a day.
+A web page with a map and a day picker. Choose a day and the map shows which venues have gigs and who is playing.
+
+The gig guide blocks automated visitors, so you grab the listings yourself in your normal browser with a short snippet, then upload the file to GitHub. GitHub does the rest: it reads the gigs, finds new venues on the map, and updates the website.
 
 ## What's in here
 
 | File | What it does |
 | --- | --- |
 | `docs/index.html` | The map page people visit |
-| `docs/gigs.json` | The gig data the page reads (example data until the scraper runs) |
-| `scrape.py` | Reads the gig guide and writes `docs/gigs.json` |
+| `docs/gigs.json` | The gig data the page reads |
+| `grab-gigs.js` | The snippet you paste into your browser to save the gig guide |
+| `scrape.py` | Reads the saved page and writes `docs/gigs.json` |
 | `venues.json` | Map coordinates for each venue, looked up once and saved |
-| `.github/workflows/update-gigs.yml` | Runs the scraper every morning on GitHub, for free |
-| `tests/sample_page.html` | A copy of the gig guide's layout, for testing the scraper offline |
-| `tests/infinite_page.html` | A fake page that loads more gigs as you scroll, for testing the scrolling |
+| `.github/workflows/update-gigs.yml` | Runs `scrape.py` on GitHub whenever you upload a new page |
+| `tests/` | Fake gig guide pages for testing |
 
-## Putting it online with GitHub (free)
+## Updating the gigs (every week or so)
 
-1. Make a GitHub account if you don't have one, then create a new **public** repository (for example `gig-map`).
-2. Upload everything in this folder to the repository. The `.github` folder is hidden on some computers, so check it went up. If it didn't, use **Add file > Create new file** and paste the workflow in at the path `.github/workflows/update-gigs.yml`.
-3. Go to **Settings > Secrets and variables > Actions > Variables** and add two repository variables:
-   - `GIG_GUIDE_URL`: the address of the gig guide page.
-   - `SCRAPER_CONTACT`: an email address or website. The free map lookup service (OpenStreetMap's Nominatim) asks for this so it can contact you if something goes wrong.
-   - `DAYS_AHEAD` (optional): how far ahead to load gigs, for example `120` for about four months. Leave it out to load everything the guide has.
-4. Go to **Settings > Pages**. Under "Build and deployment", choose **Deploy from a branch**, branch `main`, folder `/docs`, then Save. After a minute your site appears at `https://YOUR-USERNAME.github.io/gig-map/`.
-5. Go to the **Actions** tab, choose **Update gigs**, and press **Run workflow** to fetch real gigs straight away. After that it runs every morning by itself.
+1. Open the gig guide in Chrome, Edge or Firefox, the same way you normally would.
+2. Open the browser console: press F12 and click the **Console** tab (on a Mac, Cmd+Option+J).
+3. Open `grab-gigs.js`, copy all of it, paste it into the console and press Enter.
+   - The first time, Chrome may refuse the paste and ask you to type `allow pasting` first. Type that, press Enter, then paste again.
+4. Leave the tab open while it scrolls. When the console says **Saved**, a file called `gig-page.html` is in your Downloads folder.
+5. On GitHub, go to the main page of your repository and click **Add file > Upload files**. Drag in `gig-page.html` and click **Commit changes**.
+6. That's it. The **Actions** tab shows the update running. When it gets a green tick (a minute or two, longer the first time while it finds every venue), refresh your map.
+
+The snippet grabs 60 days ahead. To change that, edit the `DAYS = 60` line before you paste it.
+
+If the downloaded file is called something like `gig-page (1).html`, that's fine. Anything starting with `gig-page` and ending in `.html` works. The upload is deleted automatically once it's been read.
+
+## First-time setup
+
+1. Create a **public** repository on GitHub and upload everything in this folder (the files inside it, not the folder itself). If the `.github` folder doesn't upload, use **Add file > Create new file**, type `.github/workflows/update-gigs.yml` as the name, and paste in that file's contents.
+2. **Settings > Secrets and variables > Actions > Variables**: add `SCRAPER_CONTACT` with your email address or your map's web address. OpenStreetMap's free venue lookup asks apps to identify themselves.
+3. **Settings > Pages**: choose **Deploy from a branch**, branch `main`, folder `/docs`, and Save. Your site appears at `https://YOUR-USERNAME.github.io/gig-map/`.
+4. **Settings > Actions > General > Workflow permissions**: choose **Read and write permissions** and Save.
+5. Do your first update using the steps above.
 
 ## If a venue doesn't show on the map
 
-The page lists it with "not on map yet". Open `venues.json`, find the venue, and either type in its street address (the next run will look it up) or paste in the latitude and longitude yourself. You can get those by right-clicking the spot in Google Maps and clicking the numbers at the top of the menu.
+The page lists it with "not on map yet". Open `venues.json` on GitHub, click the pencil icon, and type the venue's street address between the quote marks after `"address"`. Or paste in the latitude and longitude yourself: right-click the spot in Google Maps and click the numbers at the top of the menu. The next update fills in the rest.
 
-## Running it on your own computer
+## When it breaks
 
-The gig guide keeps loading more gigs as you scroll, so the scraper opens it in a hidden browser (Playwright) and scrolls to the bottom until nothing new appears. Loading the whole year can take a few minutes.
+If the snippet says it found no gigs, or the update says "No gigs found", the gig guide has probably changed its layout. Look at a gig with Inspect again and compare the class names with the ones the snippet and `parse_page()` in `scrape.py` rely on: `eventcardhost`, `data-gigstartdate`, `data-gigid`, `headliner`, `supports`, `time` and `venue`.
+
+## Testing on your own computer
 
 ```
-pip install requests beautifulsoup4 playwright
-python -m playwright install chromium
-python scrape.py https://the-gig-guide-address
+pip install requests beautifulsoup4
+python scrape.py --file tests/sample_page.html --base https://example.com --offline
 cd docs
 python -m http.server
 ```
 
-Then open http://localhost:8000. (Opening `index.html` by double-clicking won't load the data, because browsers block that for local files.)
-
-To test the scraper without the internet: `python scrape.py --file tests/sample_page.html --base https://example.com --offline`
-
-## When it breaks
-
-Scrapers stop working when a site changes its layout. If the Action fails with "No gigs found", look at the page with Inspect again and update the class names in `parse_page()` in `scrape.py`. The ones it relies on are `eventcardhost`, `data-gigstartdate`, `data-gigid`, `headliner`, `supports`, `time` and `venue`.
-
-Before relying on this, check the gig guide's terms of use, and keep the scraper to once a day so it's polite to their server.
+Then open http://localhost:8000.

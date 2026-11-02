@@ -1,18 +1,19 @@
 """
 Gig map scraper.
 
-Opens the gig guide page in a hidden browser, scrolls until every gig has
-loaded, pulls out every gig (date, time, acts, venue),
+Reads the gig guide (from a page saved with grab-gigs.js, or straight from the
+site for sites that allow it), pulls out every gig (date, time, acts, venue),
 looks up map coordinates for any venue it hasn't seen before, and writes
 docs/gigs.json for the map page to read.
 
-Run it by hand:
-    python scrape.py https://example.com/gig-guide
+From a saved page (this is what the GitHub Action does):
+    python scrape.py --file "gig-page*.html"
 
-Or set the GIG_GUIDE_URL environment variable (the GitHub Action does this).
-To test against a saved copy of the page:
-    python scrape.py --file saved_page.html --base https://example.com
+Straight from a site that allows automated visitors:
+    python scrape.py https://example.com/gig-guide
 """
+
+import glob
 
 import argparse
 import json
@@ -246,8 +247,9 @@ def update_venues(gigs, venues, offline=False):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("urls", nargs="*", help="gig guide page(s) to read")
-    ap.add_argument("--file", help="read a saved HTML file instead of downloading")
-    ap.add_argument("--base", help="site address, used with --file to complete venue links")
+    ap.add_argument("--file", action="append", default=[],
+                    help="read saved page file(s) instead of downloading; wildcards like gig-page*.html work")
+    ap.add_argument("--base", help="site address for completing links, if the saved file doesn't include it")
     ap.add_argument("--offline", action="store_true", help="skip coordinate lookups")
     ap.add_argument("--simple", action="store_true",
                     help="plain download only (just the first batch of gigs, no scrolling)")
@@ -255,13 +257,22 @@ def main():
                     help="stop scrolling once gigs are this many days away (0 = load everything)")
     args = ap.parse_args()
 
-    urls = args.urls or [u for u in os.environ.get("GIG_GUIDE_URL", "").split() if u]
-    if not urls and not args.file:
+    files = sorted({f for pattern in args.file for f in (glob.glob(pattern) or [pattern])})
+    urls = args.urls or ([] if files else [u for u in os.environ.get("GIG_GUIDE_URL", "").split() if u])
+    if not urls and not files:
         ap.error("give a gig guide URL, set GIG_GUIDE_URL, or use --file")
 
-    scraped, html = [], ""
-    if args.file:
-        scraped += parse_page(Path(args.file).read_text(encoding="utf-8"), args.base or "")
+    scraped, html, source = [], "", args.base or ""
+    for f in files:
+        print(f"Reading {f}")
+        page_html = Path(f).read_text(encoding="utf-8")
+        # grab-gigs.js records the page address in the file
+        m = re.search(r'<meta name="source-url" content="([^"]+)"', page_html)
+        base = m.group(1).replace("&amp;", "&") if m else args.base or ""
+        source = source or base
+        found = parse_page(page_html, base)
+        print(f"  {len(found)} gigs")
+        scraped += found
     for url in urls:
         print(f"Reading {url}")
         html = fetch(url) if args.simple else fetch_with_scrolling(url, args.days_ahead)
@@ -293,7 +304,7 @@ def main():
     used = {g["venue"] for g in gigs}
     out = {
         "updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "source": urls[0] if urls else args.base or "",
+        "source": urls[0] if urls else source,
         "venues": {vid: v for vid, v in venues.items() if vid in used},
         "gigs": gigs,
     }
