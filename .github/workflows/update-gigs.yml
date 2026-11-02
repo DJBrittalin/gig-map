@@ -13,7 +13,7 @@ jobs:
   scrape:
     # Pinned so GitHub's move to Ubuntu 26 can't break the browser install
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v5
 
@@ -30,7 +30,8 @@ jobs:
         env:
           GIG_GUIDE_URL: ${{ vars.GIG_GUIDE_URL }}
           SCRAPER_CONTACT: ${{ vars.SCRAPER_CONTACT }}
-          DAYS_AHEAD: ${{ vars.DAYS_AHEAD }}
+          # How far ahead to load. Uses the DAYS_AHEAD variable if you set one, otherwise 60 days.
+          DAYS_AHEAD: ${{ vars.DAYS_AHEAD || '60' }}
         run: python scrape.py
 
       - name: Save the new data
