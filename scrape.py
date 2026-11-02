@@ -35,7 +35,9 @@ VENUES_FILE = ROOT / "venues.json"
 # Nominatim (OpenStreetMap's free geocoder) asks for a real contact in the User-Agent
 # and no more than one request per second.
 USER_AGENT = os.environ.get("SCRAPER_CONTACT", "gig-map-scraper (personal project)")
-GEOCODE_AREA = os.environ.get("GEOCODE_AREA", "Sydney NSW Australia")
+GEOCODE_AREA = os.environ.get("GEOCODE_AREA", "NSW, Australia")
+# Only accept map matches inside this box (roughly NSW and the ACT): west, north, east, south
+GEOCODE_BOX = os.environ.get("GEOCODE_BOX", "140.9,-28.1,153.7,-37.6")
 
 # Past gigs older than this are dropped from gigs.json so the file stays small.
 KEEP_PAST_DAYS = 30
@@ -199,7 +201,8 @@ def load_json(path, default):
 def geocode(query):
     r = requests.get(
         "https://nominatim.openstreetmap.org/search",
-        params={"q": query, "format": "json", "limit": 1, "countrycodes": "au"},
+        params={"q": query, "format": "json", "limit": 1, "countrycodes": "au",
+                "viewbox": GEOCODE_BOX, "bounded": 1},
         headers={"User-Agent": USER_AGENT},
         timeout=30,
     )
@@ -219,27 +222,63 @@ def update_venues(gigs, venues, offline=False):
         if g["_venue_url"]:
             v["url"] = g["_venue_url"]
 
+    # Venue links usually end in the suburb, e.g. 21-shepherd-marrickville -> Marrickville
+    for vid, v in venues.items():
+        name_slug = slugify(v.get("name", ""))
+        if not v.get("suburb") and name_slug and vid.startswith(name_slug + "-"):
+            v["suburb"] = vid[len(name_slug) + 1:].replace("-", " ").title()
+
     missing = [vid for vid, v in venues.items() if v.get("lat") is None and not v.get("skip")]
+    if missing and not offline:
+        print(f"Looking up {len(missing)} venues on the map")
     for vid in missing:
         v = venues[vid]
         if offline:
             continue
-        # Try the street address first if you've typed one in, then the venue name.
-        queries = [q for q in (v.get("address"), f"{v['name']}, {GEOCODE_AREA}") if q]
-        for q in queries:
+        name, suburb = v.get("name", ""), v.get("suburb", "")
+        # Most exact first: your typed address, then name + suburb, then name alone,
+        # then just the suburb (an approximate pin is better than none).
+        queries = [(v.get("address"), False),
+                   (f"{name}, {suburb}, {GEOCODE_AREA}" if suburb else None, False),
+                   (f"{name}, {GEOCODE_AREA}", False),
+                   (f"{suburb}, {GEOCODE_AREA}" if suburb else None, True)]
+        for q, approx in queries:
+            if not q:
+                continue
             try:
                 hit = geocode(q)
             except requests.RequestException as e:
-                print(f"  geocode failed for {q!r}: {e}", file=sys.stderr)
+                print(f"  lookup failed for {q!r}: {e}", file=sys.stderr)
                 hit = None
             if hit:
-                v["lat"], v["lng"] = round(hit[0], 6), round(hit[1], 6)
-                print(f"  found {v['name']}: {v['lat']}, {v['lng']}")
+                lat, lng = hit
+                if approx:
+                    # Nudge suburb-centre pins apart a little so they don't sit exactly on top of each other
+                    h = sum(map(ord, vid))
+                    lat += ((h % 7) - 3) * 0.0008
+                    lng += (((h // 7) % 7) - 3) * 0.0008
+                    v["approx"] = True
+                else:
+                    v.pop("approx", None)
+                v["lat"], v["lng"] = round(lat, 6), round(lng, 6)
+                print(f"  found {name}{' (suburb only)' if approx else ''}: {v['lat']}, {v['lng']}")
                 break
         else:
-            print(f"  NO LOCATION for {v['name']} - add an address or lat/lng in venues.json",
+            print(f"  NO LOCATION for {name} - add an address or lat/lng in venues.json",
                   file=sys.stderr)
     return venues
+
+
+def refresh_venues_only(offline=False):
+    """Retry venues with no location (or that you've edited) and rebuild gigs.json from the gigs it already has."""
+    data = load_json(GIGS_FILE, {})
+    venues = update_venues([], load_json(VENUES_FILE, {}), offline=offline)
+    VENUES_FILE.write_text(json.dumps(venues, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    used = {g["venue"] for g in data.get("gigs", [])}
+    data["venues"] = {vid: v for vid, v in venues.items() if vid in used}
+    GIGS_FILE.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    on_map = sum(1 for v in data["venues"].values() if v.get("lat") is not None)
+    print(f"{on_map} of {len(data['venues'])} venues are on the map")
 
 
 # ---------- main ----------
@@ -255,7 +294,13 @@ def main():
                     help="plain download only (just the first batch of gigs, no scrolling)")
     ap.add_argument("--days-ahead", type=int, default=int(os.environ.get("DAYS_AHEAD", "0") or 0),
                     help="stop scrolling once gigs are this many days away (0 = load everything)")
+    ap.add_argument("--venues-only", action="store_true",
+                    help="no new gigs: just look up venues still missing from the map and refresh gigs.json")
     args = ap.parse_args()
+
+    if args.venues_only:
+        refresh_venues_only(args.offline)
+        return
 
     files = sorted({f for pattern in args.file for f in (glob.glob(pattern) or [pattern])})
     urls = args.urls or ([] if files else [u for u in os.environ.get("GIG_GUIDE_URL", "").split() if u])
