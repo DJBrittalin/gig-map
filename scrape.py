@@ -253,7 +253,7 @@ def main():
     if not urls and not args.file:
         ap.error("give a gig guide URL, set GIG_GUIDE_URL, or use --file")
 
-    scraped = []
+    scraped, html = [], ""
     if args.file:
         scraped += parse_page(Path(args.file).read_text(encoding="utf-8"), args.base or "")
     for url in urls:
@@ -265,7 +265,13 @@ def main():
     scraped = list({g["id"]: g for g in scraped}.values())
     print(f"Found {len(scraped)} gigs")
     if not scraped:
-        sys.exit("No gigs found. The page layout may have changed; check the class names in parse_page().")
+        # Print what the scraper actually saw, to help work out why
+        if urls:
+            soup = BeautifulSoup(html, "html.parser")
+            print("Page title:", text(soup.title), file=sys.stderr)
+            print("Start of page text:", text(soup.body)[:600] if soup.body else "(empty)", file=sys.stderr)
+        sys.exit("No gigs found. Check GIG_GUIDE_URL is the gig guide page itself, "
+                 "or the site's layout may have changed (see the class names in parse_page()).")
 
     venues = update_venues(scraped, load_json(VENUES_FILE, {}), offline=args.offline)
     VENUES_FILE.write_text(json.dumps(venues, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
