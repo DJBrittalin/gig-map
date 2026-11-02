@@ -10,29 +10,23 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
 /* Layout: listings panel on the left, map filling the rest; stacks to day strip, map, list on phones. */
+/* One dark look in Brittney's colours: black ground, white text, pink headings, plum subheadings. */
 :root {
-  --paper: #f4f3f6;
-  --panel: #ffffff;
-  --ink: #18161c;
-  --muted: #6b6672;
-  --line: #e2dfe6;
-  --accent: #d1235f;
-  --accent-ink: #ffffff;
-  --chip: #2f4a2a;
+  --paper: #000000;      /* background */
+  --panel: #000000;
+  --ink: #ffffff;        /* most text */
+  --heading: #f04e98;    /* headings and titles */
+  --sub: #a8456f;        /* subheadings: a lighter take on #78274c so it reads on black */
+  --muted: #b9a6b0;      /* times, support acts: a soft pink-grey */
+  --line: #2e1522;       /* dividers: a very dark plum */
+  --raised: #14070e;     /* hover and popup background: near-black plum */
+  --accent: #f04e98;     /* pins, selected day */
+  --accent-ink: #000000;
+  --chip: #78274c;       /* Free / PWYC tags */
   --chip-ink: #ffffff;
   --display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", sans-serif;
   --body: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
-  color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #121015; --panel: #1b1920; --ink: #eeeaf1; --muted: #a29ca9; --line: #2e2a35;
-    --accent: #ff5c97; --accent-ink: #1a0d13; --chip: #9fd28f; --chip-ink: #12200e; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --paper: #121015; --panel: #1b1920; --ink: #eeeaf1; --muted: #a29ca9; --line: #2e2a35;
-  --accent: #ff5c97; --accent-ink: #1a0d13; --chip: #9fd28f; --chip-ink: #12200e; color-scheme: dark;
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -50,7 +44,7 @@ button { font: inherit; color: inherit; }
 #map { height: 100%; background: var(--paper); }
 
 .brand { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
-.brand h1 { margin: 0; font: 800 15px/1 var(--display); letter-spacing: .14em; text-transform: uppercase; }
+.brand h1 { margin: 0; font: 800 18px/1 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--heading); }
 .brand .jump { display: flex; gap: 6px; align-items: center; }
 .btn {
   border: 1px solid var(--line); background: transparent; border-radius: 999px;
@@ -62,8 +56,8 @@ input[type="date"] {
   border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px;
 }
 
-.day-title { margin: 0; font: 600 40px/0.95 var(--display); text-transform: uppercase; text-wrap: balance; }
-.day-title .wd { color: var(--accent); }
+.day-title { margin: 0; font: 600 40px/0.95 var(--display); text-transform: uppercase; text-wrap: balance; color: var(--heading); }
+.day-title .wd { font-weight: 800; }
 
 .strip { display: grid; grid-template-columns: auto repeat(7, 1fr) auto; gap: 4px; align-items: stretch; }
 .strip .arrow { border: 0; background: transparent; cursor: pointer; padding: 0 4px; color: var(--muted); font-size: 18px; }
@@ -72,14 +66,14 @@ input[type="date"] {
   border: 1px solid transparent; background: transparent; border-radius: 8px; cursor: pointer;
   padding: 6px 0 5px; display: grid; justify-items: center; gap: 2px; min-width: 0;
 }
-.dcell:hover { border-color: var(--line); }
+.dcell:hover { border-color: var(--sub); }
 .dcell .w { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
 .dcell .n { font: 600 20px/1 var(--display); }
 .dcell .c { font-size: 11px; color: var(--muted); height: 14px; }
 .dcell.has .c { color: var(--accent); font-weight: 600; }
 .dcell.today .n { text-decoration: underline; text-underline-offset: 3px; }
-.dcell[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); }
-.dcell[aria-pressed="true"] .w, .dcell[aria-pressed="true"] .n, .dcell[aria-pressed="true"] .c { color: var(--panel); }
+.dcell[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); }
+.dcell[aria-pressed="true"] .w, .dcell[aria-pressed="true"] .n, .dcell[aria-pressed="true"] .c { color: var(--accent-ink); }
 
 .list { overflow-y: auto; padding: 4px max(20px, env(safe-area-inset-left, 0px)) 20px; flex: 1; min-height: 0; }
 .venue { padding: 14px 0; border-bottom: 1px solid var(--line); display: grid; gap: 8px; }
@@ -87,7 +81,7 @@ input[type="date"] {
 .venue-head:hover .vname { text-decoration: underline; }
 .pin { flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-size: 12px; font-weight: 600; display: grid; place-items: center; }
 .pin.off { background: var(--line); color: var(--muted); }
-.vname { font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; }
+.vname { font: 800 19px/1.1 var(--display); text-transform: uppercase; letter-spacing: .06em; color: var(--sub); }
 .nomap { font-size: 12px; color: var(--muted); }
 .gig { display: grid; grid-template-columns: 62px 1fr; gap: 10px; padding-left: 32px; }
 .gig .t { color: var(--muted); font-size: 14px; }
@@ -104,16 +98,20 @@ input[type="date"] {
 .sample { background: var(--accent); color: var(--accent-ink); font-size: 12px; font-weight: 500; padding: 6px 10px; border-radius: 6px; }
 
 /* soften the street map so the pins stand out; darken it in dark mode */
-.leaflet-tile-pane { filter: saturate(.55) contrast(.95); }
-.dark-tiles .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) saturate(.4) brightness(.85) contrast(.9); }
+/* street map turned dark to sit on the black page */
+.leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) saturate(.3) brightness(.8) contrast(.95); }
+.leaflet-container { background: var(--paper); }
+.leaflet-control-zoom a { background: var(--raised) !important; color: var(--ink) !important; border-color: var(--line) !important; }
+.leaflet-control-attribution { background: rgba(0,0,0,.7) !important; color: var(--muted); }
+.leaflet-control-attribution a { color: var(--muted); }
 
 /* map pins */
-.mpin { width: 30px; height: 30px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--accent); border: 2px solid var(--panel); box-shadow: 0 2px 6px rgba(0,0,0,.35); display: grid; place-items: center; }
+.mpin { width: 30px; height: 30px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--accent); border: 2px solid var(--ink); box-shadow: 0 2px 6px rgba(0,0,0,.35); display: grid; place-items: center; }
 .mpin span { transform: rotate(45deg); color: var(--accent-ink); font: 600 13px/1 var(--body); }
 .mpin.approx { opacity: .7; border-style: dashed; }
-.leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--panel); color: var(--ink); }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--raised); color: var(--ink); border: 1px solid var(--line); }
 .leaflet-popup-content { margin: 12px 14px; font: 14px/1.4 var(--body); }
-.leaflet-popup-content .pv { font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+.leaflet-popup-content .pv { font: 800 18px/1.1 var(--display); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; color: var(--heading); }
 .leaflet-popup-content .pg { margin-top: 4px; }
 .leaflet-popup-content .pg b { font-weight: 600; }
 .leaflet-popup-content .pg span { color: var(--muted); }
