@@ -231,9 +231,10 @@ def update_venues(gigs, venues, offline=False):
     missing = [vid for vid, v in venues.items() if v.get("lat") is None and not v.get("skip")]
     if missing and not offline:
         print(f"Looking up {len(missing)} venues on the map")
+    blocked = False
     for vid in missing:
         v = venues[vid]
-        if offline:
+        if offline or blocked:
             continue
         name, suburb = v.get("name", ""), v.get("suburb", "")
         # Most exact first: your typed address, then name + suburb, then name alone,
@@ -248,6 +249,15 @@ def update_venues(gigs, venues, offline=False):
             try:
                 hit = geocode(q)
             except requests.RequestException as e:
+                status = getattr(getattr(e, "response", None), "status_code", None)
+                if status in (403, 429):
+                    # The map lookup service is refusing GitHub's servers, so every
+                    # other lookup would fail too. Stop now instead of spamming errors.
+                    blocked = True
+                    print("  The map lookup service refused the request (it often blocks GitHub).\n"
+                          "  Venues still missing a location: add lat/lng by hand in venues.json.",
+                          file=sys.stderr)
+                    break
                 print(f"  lookup failed for {q!r}: {e}", file=sys.stderr)
                 hit = None
             if hit:

@@ -40,7 +40,13 @@ If the downloaded file is called something like `gig-page (1).html`, that's fine
 
 ## If a venue doesn't show on the map
 
-The page lists it with "not on map yet". Open `venues.json` on GitHub, click the pencil icon, and type the venue's street address between the quote marks after `"address"`. Or paste in the latitude and longitude yourself: right-click the spot in Google Maps and click the numbers at the top of the menu. The next update fills in the rest.
+The page lists it with "not on map yet". OpenStreetMap's free lookup usually refuses requests from GitHub, so the reliable fix is to type the location in yourself:
+
+1. In Google Maps, right-click the venue and click the numbers at the top of the menu (this copies something like `-33.8995, 151.1735`).
+2. Open `venues.json` on GitHub, click the pencil icon, find the venue, and replace `null` after `"lat"` with the first number and `null` after `"lng"` with the second.
+3. Commit. The update runs by itself and the pin appears.
+
+Venues marked `"approx": true` have a rough, suburb-level pin and show as "rough location". Fix the numbers and delete that line to make it a normal pin. Venues with `"skip": true` (like Secret Location) are never looked up.
 
 ## When it breaks
 
