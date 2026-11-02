@@ -69,23 +69,29 @@ def fetch_with_scrolling(url, days_ahead=0, max_minutes=15):
 
     with sync_playwright() as p:
         browser = p.chromium.launch()
-        page = browser.new_page(user_agent=USER_AGENT)
-        page.goto(url, wait_until="networkidle", timeout=60_000)
+        # Use a normal browser identity (some sites turn away unusual ones),
+        # with the contact details in the standard "From" header.
+        page = browser.new_page(extra_http_headers={"From": USER_AGENT})
+        # Don't wait for the page to go quiet: ads and trackers keep it busy forever.
+        page.goto(url, wait_until="domcontentloaded", timeout=90_000)
+        try:
+            page.wait_for_selector(".eventcardhost", timeout=60_000)
+        except Exception:
+            print("  no gig cards appeared within 60 seconds", file=sys.stderr)
+            html = page.content()
+            browser.close()
+            return html
 
         count, stalls = 0, 0
         while time.time() < deadline:
             page.mouse.wheel(0, 20_000)
             page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-            try:
-                page.wait_for_load_state("networkidle", timeout=10_000)
-            except Exception:
-                pass
-            page.wait_for_timeout(800)
+            page.wait_for_timeout(1500)
 
             new_count = page.locator(".eventcardhost").count()
             if new_count == count:
                 stalls += 1
-                if stalls >= 4:  # nothing new after several tries: reached the end
+                if stalls >= 8:  # nothing new for about 12 seconds: reached the end
                     break
             else:
                 stalls = 0
