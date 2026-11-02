@@ -4,7 +4,8 @@
     "address": "21 Shepherd Street, Marrickville NSW 2204",
     "lat": null,
     "lng": null,
-    "url": "https://sydneymusic.net/gig-guide/venues/21-shepherd-marrickville"
+    "url": "https://sydneymusic.net/gig-guide/venues/21-shepherd-marrickville",
+    "suburb": "Marrickville"
   },
   "enmore-hotel": {
     "name": "Enmore Hotel",
@@ -39,7 +40,8 @@
     "address": "",
     "lat": null,
     "lng": null,
-    "url": "https://sydneymusic.net/gig-guide/venues/stadium-rockdale-tramway-arcade"
+    "url": "https://sydneymusic.net/gig-guide/venues/stadium-rockdale-tramway-arcade",
+    "suburb": "Tramway Arcade"
   },
   "the-fusebox-the-factory": {
     "name": "The Fusebox @ Factory Theatre",
@@ -298,7 +300,8 @@
     "address": "",
     "lat": null,
     "lng": null,
-    "url": "https://sydneymusic.net/gig-guide/venues/liberty-hall-entertainment-quarter"
+    "url": "https://sydneymusic.net/gig-guide/venues/liberty-hall-entertainment-quarter",
+    "suburb": "Entertainment Quarter"
   },
   "sappho-books-cafe-and-bar": {
     "name": "Sappho Books, Cafe & Bar",
@@ -389,7 +392,8 @@
     "address": "",
     "lat": null,
     "lng": null,
-    "url": "https://sydneymusic.net/gig-guide/venues/dead-set-darlinghurst-darlo-kinselas"
+    "url": "https://sydneymusic.net/gig-guide/venues/dead-set-darlinghurst-darlo-kinselas",
+    "suburb": "Darlinghurst Darlo Kinselas"
   },
   "sydney-opera-house": {
     "name": "Sydney Opera House Concert Hall",
@@ -410,7 +414,8 @@
     "address": "",
     "lat": null,
     "lng": null,
-    "url": "https://sydneymusic.net/gig-guide/venues/chinese-laundry-sydney"
+    "url": "https://sydneymusic.net/gig-guide/venues/chinese-laundry-sydney",
+    "suburb": "Sydney"
   },
   "ramblin-rascal-tavern": {
     "name": "Ramblin' Rascal Tavern",
@@ -557,7 +562,8 @@
     "address": "",
     "lat": null,
     "lng": null,
-    "url": "https://sydneymusic.net/gig-guide/venues/the-mitch-alexandria"
+    "url": "https://sydneymusic.net/gig-guide/venues/the-mitch-alexandria",
+    "suburb": "Alexandria"
   },
   "union-hotel": {
     "name": "Union Hotel",
@@ -627,14 +633,16 @@
     "address": "",
     "lat": null,
     "lng": null,
-    "url": "https://sydneymusic.net/gig-guide/venues/ivy-merivale"
+    "url": "https://sydneymusic.net/gig-guide/venues/ivy-merivale",
+    "suburb": "Merivale"
   },
   "manning-bar-usyd": {
     "name": "Manning Bar",
     "address": "",
     "lat": null,
     "lng": null,
-    "url": "https://sydneymusic.net/gig-guide/venues/manning-bar-usyd"
+    "url": "https://sydneymusic.net/gig-guide/venues/manning-bar-usyd",
+    "suburb": "Usyd"
   },
   "accor-stadium": {
     "name": "Stadium Australia",
@@ -655,7 +663,8 @@
     "address": "",
     "lat": null,
     "lng": null,
-    "url": "https://sydneymusic.net/gig-guide/venues/vespertine-sydney"
+    "url": "https://sydneymusic.net/gig-guide/venues/vespertine-sydney",
+    "suburb": "Sydney"
   },
   "powerhouse-parramatta": {
     "name": "Powerhouse Parramatta",
@@ -760,7 +769,8 @@
     "address": "",
     "lat": null,
     "lng": null,
-    "url": "https://sydneymusic.net/gig-guide/venues/coliseum-theatre-western-sydney"
+    "url": "https://sydneymusic.net/gig-guide/venues/coliseum-theatre-western-sydney",
+    "suburb": "Western Sydney"
   },
   "darling-harbour-theatre": {
     "name": "Darling Harbour Theatre",
@@ -851,14 +861,16 @@
     "address": "",
     "lat": null,
     "lng": null,
-    "url": "https://sydneymusic.net/gig-guide/venues/35-richards-lane-surry-hills"
+    "url": "https://sydneymusic.net/gig-guide/venues/35-richards-lane-surry-hills",
+    "suburb": "Surry Hills"
   },
   "the-mona-vale-hotel": {
     "name": "The Mona",
     "address": "",
     "lat": null,
     "lng": null,
-    "url": "https://sydneymusic.net/gig-guide/venues/the-mona-vale-hotel"
+    "url": "https://sydneymusic.net/gig-guide/venues/the-mona-vale-hotel",
+    "suburb": "Vale Hotel"
   },
   "aco-pier-2-3": {
     "name": "ACO Pier 2/3",
