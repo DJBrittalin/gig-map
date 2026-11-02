@@ -110,6 +110,7 @@ input[type="date"] {
 /* map pins */
 .mpin { width: 30px; height: 30px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--accent); border: 2px solid var(--panel); box-shadow: 0 2px 6px rgba(0,0,0,.35); display: grid; place-items: center; }
 .mpin span { transform: rotate(45deg); color: var(--accent-ink); font: 600 13px/1 var(--body); }
+.mpin.approx { opacity: .7; border-style: dashed; }
 .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--panel); color: var(--ink); }
 .leaflet-popup-content { margin: 12px 14px; font: 14px/1.4 var(--body); }
 .leaflet-popup-content .pv { font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
@@ -197,8 +198,8 @@ input[type="date"] {
   dark.addEventListener?.("change", setTiles);
   const markerLayer = L.layerGroup().addTo(map);
 
-  function pinIcon(n) {
-    return L.divIcon({ className: "", html: `<div class="mpin"><span>${n}</span></div>`, iconSize: [30, 30], iconAnchor: [15, 30], popupAnchor: [0, -30] });
+  function pinIcon(n, approx) {
+    return L.divIcon({ className: "", html: `<div class="mpin${approx ? " approx" : ""}"><span>${n}</span></div>`, iconSize: [30, 30], iconAnchor: [15, 30], popupAnchor: [0, -30] });
   }
 
   // ---- rendering ----
@@ -255,7 +256,7 @@ input[type="date"] {
         <button class="venue-head" type="button" data-venue="${esc(grp.vid)}" ${onMap ? "" : "disabled"}>
           <span class="pin${onMap ? "" : " off"}">${label || "?"}</span>
           <span class="vname">${esc(grp.venue.name)}</span>
-          ${onMap ? "" : `<span class="nomap">not on map yet</span>`}
+          ${onMap ? (grp.venue.approx ? `<span class="nomap">rough location</span>` : "") : `<span class="nomap">not on map yet</span>`}
         </button>
         ${grp.gigs.map(gigHtml).join("")}
       </section>`;
@@ -269,9 +270,10 @@ input[type="date"] {
     for (const grp of groups) {
       const v = grp.venue;
       if (v.lat == null || v.lng == null) continue;
-      const popup = `<div class="pv">${esc(v.name)}</div>` + grp.gigs.map((g) =>
+      const where = v.approx ? `<div class="pg"><span>Rough location${v.suburb ? ": somewhere in " + esc(v.suburb) : ""}</span></div>` : "";
+      const popup = `<div class="pv">${esc(v.name)}</div>` + where + grp.gigs.map((g) =>
         `<div class="pg"><b>${esc(g.headliners.join(" + "))}</b><br><span>${esc(g.time)}${g.supports.length ? " · with " + esc(g.supports.join(", ")) : ""}</span></div>`).join("");
-      const m = L.marker([v.lat, v.lng], { icon: pinIcon(grp.label), title: v.name }).bindPopup(popup).addTo(markerLayer);
+      const m = L.marker([v.lat, v.lng], { icon: pinIcon(grp.label, v.approx), title: v.name }).bindPopup(popup).addTo(markerLayer);
       markers[grp.vid] = m;
       pts.push([v.lat, v.lng]);
     }
